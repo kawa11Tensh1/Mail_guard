@@ -1,0 +1,3 @@
+/eml/*.eml
+/var/cache/*
+/var/logs/*

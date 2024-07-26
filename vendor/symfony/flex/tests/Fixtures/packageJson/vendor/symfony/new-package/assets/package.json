@@ -1,0 +1,23 @@
+{
+    "symfony": {
+        "controllers": {
+            "new": {
+                "enabled": true,
+                "fetch": "lazy",
+                "autoimport": {
+                    "@symfony/new-package/dist/style.css": true
+                }
+            }
+        },
+        "entrypoints": ["admin.js"],
+        "importmap": {
+            "@hotcake/foo": "^1.9.0",
+            "@symfony/new-package": {
+                "version": "path:%PACKAGE%/dist/loader.js"
+            }
+        }
+    },
+    "peerDependencies": {
+        "@hotcookies/bar": "^1.1"
+    }
+}

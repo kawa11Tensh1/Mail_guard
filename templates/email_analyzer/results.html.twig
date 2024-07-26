@@ -1,0 +1,30 @@
+{# templates/email_analyzer/results.html.twig #}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Результаты анализа EML-файла</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Результаты анализа EML-файла</h1>
+            <p><strong>Адрес отправителя:</strong> {{ fromAddress }}</p>
+            <p><strong>Извлеченный домен:</strong> {{ domain }}</p>
+            <p><strong>SPF-запись для домена:</strong> {{ spfRecord }}</p>
+            {% for result in results %}
+                <p><strong>IP-адрес отправителя:</strong> {{ result.ip }} - 
+                {% if result.is_valid %}
+                    <span style="color: green;">Соответствует SPF-записи</span>
+                {% else %}
+                    <span style="color: red;">Не соответствует SPF-записи</span>
+                {% endif %}
+                </p>
+            {% endfor %}
+            <form action="javascript:history.back()">
+                <input type="submit" value="Вернуться назад">
+            </form>
+        </div>
+    </body>
+</html>

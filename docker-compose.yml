@@ -1,0 +1,40 @@
+version: '3'
+services:
+  domain:
+    build: ./docker/domain
+    volumes:
+      - ./:/app
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+    environment:
+      - DOMAIN_NAME
+
+  email:
+    build: ./docker/email
+    volumes:
+      - ./:/app
+      #- ./eml:/eml
+    environment:
+      - EML_FILE
+
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - "./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+      - "./:/var/www/html"
+    ports:
+      - "8888:80"
+    environment:
+      - NGINX_HOST=mail-guard.local
+    command: nginx -g 'daemon off;'
+    restart: always
+    depends_on:
+      - php
+
+  php:
+    build: ./docker/php
+    restart: always
+    volumes:
+      - "./:/var/www/html"
+      - "./php.ini:/usr/local/etc/php/php.ini"

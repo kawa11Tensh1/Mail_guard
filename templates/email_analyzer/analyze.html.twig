@@ -1,0 +1,22 @@
+{# templates/email_analyzer/analyze.html.twig #}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <title>Анализатор писем</title>
+        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Анализатор писем</h1>
+            <form action="{{ path('email_analyze') }}" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="email">Загрузите файл EML:</label>
+                    <input type="file" name="email" id="email" accept=".eml">
+                </div>
+                <input type="submit" value="Анализировать">
+            </form>
+        </div>
+    </body>
+</html>

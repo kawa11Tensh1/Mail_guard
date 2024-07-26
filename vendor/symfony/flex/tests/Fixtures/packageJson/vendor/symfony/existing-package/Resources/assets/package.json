@@ -1,0 +1,18 @@
+{
+    "symfony": {
+        "controllers": {
+            "mock": {
+                "enabled": true,
+                "fetch": "eager",
+                "autoimport": {
+                    "@symfony/existing-package/dist/style.css": true,
+                    "@symfony/existing-package/dist/new-style.css": true
+                }
+            }
+        }
+    },
+    "peerDependencies": {
+        "@hotcookies/bar": "^1.1|^2",
+        "@hotdogs/bun": "^2"
+    }
+}
